@@ -2,8 +2,11 @@ package pl.trastenski.ecommerce.catalog;
 
 import org.junit.jupiter.api.Test;
 
+import pl.trastenski.ecommerce.catalog.ArrayListProductStorage;
+import pl.trastenski.ecommerce.catalog.Product;
+import pl.trastenski.ecommerce.catalog.ProductCatalog;
 
-
+import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.math.BigDecimal;

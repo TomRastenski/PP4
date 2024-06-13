@@ -6,7 +6,6 @@ import java.util.UUID;
 public class Product {
     private String id;
     private String name;
-    @SuppressWarnings("unused")
     private String description;
     private BigDecimal price;
 
@@ -33,6 +32,6 @@ public class Product {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 }

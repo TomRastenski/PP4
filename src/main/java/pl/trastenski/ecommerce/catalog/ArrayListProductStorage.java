@@ -17,8 +17,8 @@ public class ArrayListProductStorage implements ProductStorage {
     }
 
     @Override
-    public void add(Product newProduct) {
-        products.add(newProduct);
+    public void add(Product product) {
+        products.add(product);
     }
 
     @Override
@@ -26,6 +26,6 @@ public class ArrayListProductStorage implements ProductStorage {
         return products.stream()
                 .filter(product -> product.getId().equals(id))
                 .findFirst()
-                .orElse(null);
+                .get();
     }
 }

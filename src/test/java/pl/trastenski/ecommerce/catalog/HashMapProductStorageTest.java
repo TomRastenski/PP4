@@ -2,25 +2,26 @@ package pl.trastenski.ecommerce.catalog;
 
 import org.junit.jupiter.api.Test;
 
-
-
-
-import java.util.List;
-import java.util.UUID;
+import pl.trastenski.ecommerce.catalog.HashMapProductStorage;
+import pl.trastenski.ecommerce.catalog.Product;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.UUID;
+
 public class HashMapProductStorageTest {
 
-
-    private static final String EXAMPLE_PRODUCT_NAME = "Lego 8083";
+    public static final String EXAMPLE_PRODUCT_NAME = "example product";
 
     @Test
-    void itStoresProducts() {
-        ProductStorage productStorage = thereIsProductStorage();
-        Product product = thereisExampleProduct();
+    void itStoresAndLoadProduct() {
+        var product = thereIsExampleProduct();
+        var productStorage = thereIsProductStorage();
 
         productStorage.add(product);
+
         List<Product> products = productStorage.allProducts();
 
         assertThat(products)
@@ -29,12 +30,25 @@ public class HashMapProductStorageTest {
                 .contains(EXAMPLE_PRODUCT_NAME);
     }
 
-    private Product thereisExampleProduct() {
-        var product = new Product(UUID.randomUUID(), EXAMPLE_PRODUCT_NAME, "Obdachloss");
-        return product;
+    @Test
+    void itStoresAndLoadById() {
+        var product = thereIsExampleProduct();
+        var productStorage = thereIsProductStorage();
+
+        productStorage.add(product);
+        var loaded = productStorage.getProductBy(product.getId());
+
+        assertThat(loaded.getId()).isEqualTo(product.getId());
     }
 
-    private ProductStorage thereIsProductStorage() {
+    private HashMapProductStorage thereIsProductStorage() {
         return new HashMapProductStorage();
+    }
+
+    private Product thereIsExampleProduct() {
+        var product = new Product(UUID.randomUUID(), EXAMPLE_PRODUCT_NAME, "nice one");
+        product.changePrice(BigDecimal.valueOf(10.10));
+
+        return product;
     }
 }

@@ -2,7 +2,10 @@ package pl.trastenski.creditcard;
 
 import org.junit.jupiter.api.Test;
 
-
+import pl.trastenski.creditcard.CreditAlreadyAssignedException;
+import pl.trastenski.creditcard.CreditBelowThresholdException;
+import pl.trastenski.creditcard.CreditCard;
+import pl.trastenski.creditcard.NotEnoughMoneyException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
